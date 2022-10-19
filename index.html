@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/jquery-3.6.1.min.js"></script>
+    <title>WEB MÃ HÓA SIÊU XỊN XÒ</title>
+</head>
+
+<body>
+    <header>
+        <img src="./img/background.jpg" alt="">
+    </header>
+    <div class="content">
+        <div class="h1 text-center">WEB MÃ HÓA SIÊU XỊN XÒ :'>></div>
+    </div>
+    <div class="main__form">
+        <form class="was-validated">
+            <div class="mb-3 mt-3">
+                <label for="uname" class="form-label">Username:</label>
+                <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="mb-3">
+                <label for="pwd" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <button type="button" class="btn btn-primary enter">ENCRYPT</button>
+            <button type="button" class="btn btn-info reload">RELOAD</button>
+        </form>
+    </div>
+    <div class="result">
+        <div class="h1 text-center text-danger">SUCCESSFUL ENCRYPTION</div>
+        <h4 style="margin-top: 15px;"> <b> PASSWORD INPUT:</b>
+            <span class="pas"></span>
+        </h4>
+        <h4> <b> PASSWORD ENCRYPTION SHA256:</b>
+            <span style="font-size: 16px;" class="pas__sha"></span>
+        </h4>
+        <h4> <b> PASSWORD ENCRYPTION MD5:</b>
+            <span style="font-size: 16px;" class="pas__md5"></span>
+        </h4>
+    </div>
+
+    <footer>
+        <h3 class="text">POWER BY: VÕ TẤN ĐẠT-20116031 (action web) & LÊ THỊ HỮU HIỆU (layout)</h3>
+    </footer>
+
+</body>
+<script src="./js/scrip.js"></script>
+<script>
+    $(".enter").click(function() {
+        if ($("#uname").val().length == 0) {
+            alert('Please enter a username')
+            return
+        }
+
+        if ($("#pwd").val().length == 0) {
+            alert('Please enter a password')
+            return
+        }
+        var password = $("#pwd").val()
+        let encryptedSHA = SHA256(password)
+        let encryptedMD5 = MD5(password)
+        $(".result").css("display", "block");
+        $(".pas").append(password)
+        $(".pas__sha").append(encryptedSHA)
+        $(".pas__md5").append(encryptedMD5)
+
+
+    });
+
+    $(".reload").click(function() {
+        location.reload(true);
+
+
+    });
+</script>
+
+</html>
